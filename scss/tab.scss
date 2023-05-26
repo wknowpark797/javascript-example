@@ -34,7 +34,7 @@ body {
 				padding-top: 40px;
 
 				img {
-					width: 120px;
+					width: 100px;
 				}
 			}
 
@@ -84,7 +84,7 @@ body {
 				align-items: center;
 				opacity: 0;
 				z-index: 1;
-				transition: opacity 0.5s;
+				transition: opacity 0.3s;
 				// 접근성 고려의 경우 display: none; 사용 권장
 
 				&:nth-of-type(1) {

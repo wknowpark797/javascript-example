@@ -48,7 +48,7 @@ body main nav h1 {
   padding-top: 40px;
 }
 body main nav h1 img {
-  width: 120px;
+  width: 100px;
 }
 body main nav ul {
   width: 100%;
@@ -89,7 +89,7 @@ body main section article {
   align-items: center;
   opacity: 0;
   z-index: 1;
-  transition: opacity 0.5s;
+  transition: opacity 0.3s;
 }
 body main section article:nth-of-type(1) {
   height: 400px;
