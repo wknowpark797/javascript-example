@@ -16,6 +16,7 @@ btns.forEach((btn, idx) => {
 	btn.addEventListener('click', (e) => {
 		e.preventDefault();
 
+		// 재이벤트 방지
 		if (e.currentTarget.classList.contains('on')) {
 			return;
 		}
@@ -28,10 +29,11 @@ btns.forEach((btn, idx) => {
 });
 
 function activation(arr, idx) {
-	for (const el of arr) el.classList.remove('on');
+	for (const el of arr) el.classList.remove('on'); // 초기화
 	arr[idx].classList.add('on');
 }
 
+// 탭박스 높이변경 Anime
 function matchHeight(idx) {
 	const onHeight = parseInt(getComputedStyle(boxs[idx]).height);
 
@@ -42,6 +44,7 @@ function matchHeight(idx) {
 	});
 }
 
+// 탭박스 transition-duration
 function convertSpeed(el) {
 	return parseFloat(getComputedStyle(el).transitionDuration) * 1000;
 }
