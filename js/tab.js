@@ -11,15 +11,18 @@ const frame = document.querySelector('main');
 const btns = frame.querySelectorAll('nav ul li');
 const boxs = frame.querySelectorAll('section article');
 const convertedSpeed = convertSpeed(boxs[0]);
+let preventEvent = false; // 모션 실행 중 여부
 
 btns.forEach((btn, idx) => {
 	btn.addEventListener('click', (e) => {
 		e.preventDefault();
 
-		// 재이벤트 방지
-		if (e.currentTarget.classList.contains('on')) {
+		// 재이벤트 방지 (활성화 탭, 실행 중인 모션)
+		const isOn = e.currentTarget.classList.contains('on');
+		if (isOn || preventEvent) {
 			return;
 		}
+		preventEvent = true;
 
 		activation(btns, idx);
 		activation(boxs, idx);
@@ -41,6 +44,10 @@ function matchHeight(idx) {
 		prop: 'height',
 		value: onHeight,
 		duration: convertedSpeed,
+		callback: () => {
+			// 모든 모션이 끝난 후 실행
+			preventEvent = false;
+		},
 	});
 }
 
@@ -48,7 +55,3 @@ function matchHeight(idx) {
 function convertSpeed(el) {
 	return parseFloat(getComputedStyle(el).transitionDuration) * 1000;
 }
-
-/* 
-  과제: 모션 실행중 재이벤트 방지
-*/
