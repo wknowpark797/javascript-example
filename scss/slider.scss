@@ -1,0 +1,79 @@
+@import 'reset';
+
+$slideLength: 5;
+
+#slider {
+	width: 100%;
+	height: 100vh;
+	position: relative;
+	overflow: hidden;
+
+	.panel {
+		width: calc(100% * $slideLength);
+		height: 100%;
+
+		> div {
+			width: calc(100% / $slideLength);
+			height: 100%;
+			float: left;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 50px;
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: cover;
+			background-attachment: fixed;
+
+			@for $i from 1 through $slideLength {
+				&:nth-of-type(#{$i}) {
+					background-image: url(../img/slider/pic#{$i}.jpg);
+				}
+			}
+		}
+	}
+
+	.btns {
+		width: 90%;
+		height: 50px;
+		position: absolute;
+		left: 5%;
+		bottom: 50px;
+		display: flex;
+		gap: 50px;
+		perspective: 1000px;
+
+		li {
+			flex: 1;
+			height: 100%;
+			border-radius: 50px;
+			border: 1px solid #333;
+			transition: 0.5s;
+			cursor: pointer;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			transform: rotateY(360deg);
+
+			&.on {
+				transform: rotateY(0deg);
+				background: #333;
+				color: #fff;
+			}
+		}
+	}
+
+	#rot {
+		position: absolute;
+		top: 50%;
+		margin-top: -160px;
+		right: -160px;
+		transition: 1s;
+
+		@for $i from 0 to $slideLength {
+			&.rot#{$i + 1} {
+				transform: rotate(60deg * $i);
+			}
+		}
+	}
+}
