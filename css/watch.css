@@ -1,0 +1,85 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+main {
+  width: 100%;
+  height: 100vh;
+  min-width: 1400px;
+  min-height: 760px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-image: url(../img/watch/bg_morning.jpg);
+  overflow: hidden;
+}
+main article {
+  width: 40vw;
+  position: absolute;
+  top: 40vh;
+  left: 5vw;
+}
+main article p {
+  font: 4vw/1 "orbitron";
+  color: #fff;
+  margin-bottom: 20px;
+}
+main article p strong {
+  opacity: 0.7;
+}
+main article em {
+  font: bold 14px/1.2 "arial";
+  color: #fff;
+  letter-spacing: 2px;
+}
+main figure {
+  width: 1200px;
+  height: 800px;
+  position: absolute;
+  right: -5vw;
+  bottom: -5vh;
+  background-image: url(../img/watch/phone_morning.png);
+  background-position: right top;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+main figure .screen {
+  width: 534px;
+  height: 301px;
+  position: absolute;
+  top: 98px;
+  left: 132px;
+  font: 60px/301px "orbitron";
+  color: #fff;
+  text-align: center;
+}
+main figure .screen em {
+  position: absolute;
+  top: 90px;
+  left: 80px;
+  font: 20px/1 "orbitron";
+  color: #fff;
+  opacity: 0;
+}
+main figure .screen em.on {
+  opacity: 0.8;
+}
+main figure .screen span {
+  display: inline-block;
+  width: 100px;
+}
+
+/*# sourceMappingURL=watch.css.map */
