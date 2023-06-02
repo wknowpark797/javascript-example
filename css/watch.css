@@ -15,19 +15,83 @@ a {
   text-decoration: none;
 }
 
+body {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
 main {
   width: 100%;
   height: 100vh;
-  min-width: 1400px;
-  min-height: 760px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   background-image: url(../img/watch/bg_morning.jpg);
   overflow: hidden;
 }
+main.dark article p,
+main.dark article em,
+main.dark figure .screen em,
+main.dark figure .screen span {
+  color: #555;
+}
+main.morning {
+  background-image: url(../img/watch/bg_morning.jpg);
+}
+main.morning figure {
+  background-image: url(../img/watch/phone_morning.png);
+}
+main.afternoon {
+  background-image: url(../img/watch/bg_afternoon.jpg);
+}
+main.afternoon figure {
+  background-image: url(../img/watch/phone_afternoon.png);
+}
+main.evening {
+  background-image: url(../img/watch/bg_evening.jpg);
+}
+main.evening figure {
+  background-image: url(../img/watch/phone_evening.png);
+}
+main.night {
+  background-image: url(../img/watch/bg_night.jpg);
+}
+main.night figure {
+  background-image: url(../img/watch/phone_night.png);
+}
+main .cloud1 {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  opacity: 0;
+  animation: move 20s linear 15s infinite;
+}
+main .cloud2 {
+  position: absolute;
+  top: -50px;
+  left: 0;
+  opacity: 0;
+  animation: move 20s linear 0s infinite;
+}
+@keyframes move {
+  0% {
+    opacity: 0;
+    left: -50%;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  95% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    left: 80%;
+  }
+}
 main article {
-  width: 40vw;
+  width: 35vw;
   position: absolute;
   top: 40vh;
   left: 5vw;
@@ -49,8 +113,9 @@ main figure {
   width: 1200px;
   height: 800px;
   position: absolute;
-  right: -5vw;
-  bottom: -5vh;
+  right: -10vw;
+  top: 50%;
+  margin-top: -200px;
   background-image: url(../img/watch/phone_morning.png);
   background-position: right top;
   background-repeat: no-repeat;
@@ -65,6 +130,23 @@ main figure .screen {
   font: 60px/301px "orbitron";
   color: #fff;
   text-align: center;
+  overflow: hidden;
+}
+main figure .screen .cloud1 {
+  width: 600px;
+  position: absolute;
+  top: 30px;
+  left: 0;
+  opacity: 0;
+  animation: move 20s linear 15s infinite;
+}
+main figure .screen .cloud2 {
+  width: 700px;
+  position: absolute;
+  top: 20px;
+  left: 0;
+  opacity: 0;
+  animation: move 20s linear 0s infinite;
 }
 main figure .screen em {
   position: absolute;
@@ -80,6 +162,45 @@ main figure .screen em.on {
 main figure .screen span {
   display: inline-block;
   width: 100px;
+}
+
+@media screen and (max-width: 1600px) {
+  main figure {
+    transform-origin: right center;
+    transform: scale(0.8);
+    margin-top: -250px;
+  }
+}
+@media screen and (max-width: 1400px) {
+  main article {
+    width: 25vw;
+  }
+  main article p {
+    font-size: 6vw;
+  }
+}
+@media screen and (max-width: 1200px) {
+  main article {
+    width: 100%;
+    top: 10vh;
+    left: 0;
+    padding: 10vw;
+  }
+  main figure {
+    margin-top: -200px;
+    transform: scale(0.7);
+  }
+}
+@media screen and (max-width: 800px) {
+  main article {
+    top: 0vh;
+    padding: 10vw;
+  }
+  main figure {
+    margin-top: -200px;
+    transform: scale(0.6);
+    right: -20vw;
+  }
 }
 
 /*# sourceMappingURL=watch.css.map */
