@@ -8,7 +8,8 @@
   <title>Document</title>
   <script src="https://kit.fontawesome.com/57de64ccd3.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="css/mousemove.css">
-  <script defer src="js/mousemove.js"></script>
+  <!-- <script defer src="js/mousemove.js"></script> -->
+  <script src="js/sequence.js"></script>
 </head>
 
 <body>
@@ -17,10 +18,16 @@
   <figure></figure>
 
   <!-- 로딩 화면 -->
-  <aside>
-    <p>0%</p>
-    <div class="bar"></div>
-  </aside>
+  <!--
+    <aside>
+      <p>0%</p>
+      <div class="bar"></div>
+    </aside>
+  -->
+
+  <script>
+    new Sequence('figure');
+  </script>
 
 </body>
 
