@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/anime.js"></script>
+</head>
+
+<body>
+  <!-- Anime 사용 전용 예제 -->
+
+  <button>button</button>
+  <div id="wrap">
+    <div id="box"></div>
+  </div>
+
+  <script>
+    const btn = document.querySelector('button');
+    const box = document.querySelector('#box');
+
+    btn.addEventListener('click', () => {
+      const instance = new Anime(
+        box,
+        {
+          left: '50%',
+          opacity: 0
+        },
+        1000,
+        () => {
+          console.log('complete');
+        });
+    });
+  </script>
+</body>
+
+</html>
