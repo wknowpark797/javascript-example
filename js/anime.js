@@ -19,8 +19,22 @@ class Anime {
 			const parentW = parseInt(getComputedStyle(this.selector.parentElement).width);
 			const parentH = parseInt(getComputedStyle(this.selector.parentElement).height);
 
-			const x = ['margin-left', 'margin-right', 'left', 'right', 'width'];
-			const y = ['margin-top', 'margin-bottom', 'top', 'bottom', 'height'];
+			const x = ['left', 'right', 'width'];
+			const y = ['top', 'bottom', 'height'];
+			const errProps = [
+				'margin-left',
+				'margin-right',
+				'padding-left',
+				'padding-right',
+				'margin-top',
+				'margin-bottom',
+				'padding-top',
+				'padding-bottom',
+			];
+
+			for (let cond of errProps)
+				if (this.option.prop === cond)
+					return console.error('margin, padding값은 퍼센트 모션을 처리할 수 없습니다.');
 
 			for (let cond of x)
 				this.option.prop === cond && (this.currentValue = (this.currentValue / parentW) * 100);
@@ -32,6 +46,7 @@ class Anime {
 		this.option.value !== this.currentValue && requestAnimationFrame((time) => this.run(time));
 	}
 	run(time) {
+		console.log(this);
 		let timelast = time - this.startTime;
 		let progress = timelast / this.option.duration;
 
@@ -42,6 +57,7 @@ class Anime {
 			: this.option.callback && this.option.callback();
 
 		let result = this.currentValue + (this.option.value - this.currentValue) * progress;
+
 		if (this.isString === 'string') this.selector.style[this.option.prop] = `${result}%`;
 		else if (this.option.prop === 'opacity') this.selector.style[this.option.prop] = result;
 		else if (this.option.prop === 'scroll') this.selector.scroll(0, result);
