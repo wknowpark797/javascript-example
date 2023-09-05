@@ -1,6 +1,7 @@
 class Anime {
 	#defOpt = { duration: 500, callback: null, easeType: 'linear' };
 
+	// 인스턴스 생성시 옵션값 전달 및 속성값 보정함수 반복 호출
 	constructor(selector, props, opt) {
 		this.selector = selector;
 		this.defOpt = { ...this.#defOpt, ...opt };
@@ -11,6 +12,7 @@ class Anime {
 		this.easeType = this.defOpt.easeType;
 		this.startTime = performance.now();
 		this.isBg = null;
+
 		this.keys.forEach((key, idx) => {
 			typeof this.values[idx] === 'string'
 				? this.values[idx].includes('%')
@@ -20,6 +22,7 @@ class Anime {
 		});
 	}
 
+	// 타입에 따라 전달받은 value값을 보정해주는 연산처리
 	getValue(key, value, type) {
 		let currentValue = null;
 		currentValue = parseFloat(getComputedStyle(this.selector)[key]);
@@ -54,6 +57,7 @@ class Anime {
 		}
 	}
 
+	// getValue에서 전달받은 값과 타입을 타입에 따라 다른방식으로 반복 호출
 	run(time, key, currentValue, value, type) {
 		let [progress, result] = this.getProgress(time, currentValue, value);
 		this.setValue(key, result, type);
@@ -67,6 +71,7 @@ class Anime {
 			: this.callback && this.callback();
 	}
 
+	// 전달받은 currentValue와 targetValue를 비교해서 진행률과 진행률이 적용된 수치값 리턴
 	getProgress(time, currentValue, value) {
 		let easingProgress = null;
 		currentValue.length ? (this.isBg = true) : (this.isBg = false);
@@ -93,6 +98,7 @@ class Anime {
 		];
 	}
 
+	// 타입에 따라서 전달받은 result값을 실제 DOM의 스타일 객체에 연결
 	setValue(key, result, type) {
 		if (type === 'percent') this.selector.style[key] = result + '%';
 		else if (type === 'color')
@@ -102,10 +108,18 @@ class Anime {
 		else this.selector.style[key] = result + 'px';
 	}
 
+	// rgb로 시작하는 문자값에서 색상에 활용되는 숫자값 3개를 배열로 리턴
+	// 기존 css에 적용되어 있는 색상값 변환
 	colorToArray(strColor) {
 		return strColor.match(/\d+/g).map(Number);
+		// return strColor.match(/\d+/g).map(el => Number(el));
+
+		// parseInt(): 문자가 포함되어 있는 값이라도 숫자로 시작하면 숫자로 변환가능
+		// Number(): 숫자로만 구성되어 있는 문자를 숫자로 변환
 	}
 
+	// hex방식으로 시작하는 문자값에서 색상에 활용되는 숫자값 3개를 배열로 리턴
+	// 변경하려는 색상값 변환
 	hexToRgb(hexColor) {
 		const hex = hexColor.replace('#', '');
 		const rgb = hex.length === 3 ? hex.match(/a-f\d/gi) : hex.match(/[a-f\d]{2}/gi);
